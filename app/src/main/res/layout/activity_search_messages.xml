@@ -9,7 +9,7 @@
         android:focusable="true"
         android:background="?attr/bgColor"
         android:focusableInTouchMode="true"
-        tools:context="com.color.sms.messages.theme.activity.search.SearchMessagesActivity">
+        tools:context="lib.message.theme.activity.search.SearchMessagesActivity">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

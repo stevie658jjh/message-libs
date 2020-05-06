@@ -4,7 +4,7 @@
 
         <variable
             name="category"
-            type="com.color.sms.messages.theme.activity.search.model.Search.Category" />
+            type="lib.message.theme.activity.search.model.Search.Category" />
     </data>
 
     <androidx.cardview.widget.CardView

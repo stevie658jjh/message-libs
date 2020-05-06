@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?bgColor"
-        tools:context="com.color.sms.messages.theme.com.color.sms.messages.theme.MainActivity">
+        tools:context="lib.message.theme.lib.message.theme.MainActivity">
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

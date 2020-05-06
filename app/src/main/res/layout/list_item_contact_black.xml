@@ -3,7 +3,7 @@
     <data>
         <variable
             name="item"
-            type="com.color.sms.messages.theme.model.Contact" />
+            type="lib.message.theme.model.Contact" />
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.color.sms.messages.theme.activity.ComposeActivity">
+            tools:context="lib.message.theme.activity.ComposeActivity">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

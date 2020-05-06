@@ -3,7 +3,7 @@
     <data>
         <variable
             name="activity"
-            type="com.color.sms.messages.theme.block.activity.BlackListActivity" />
+            type="lib.message.theme.block.activity.BlackListActivity" />
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

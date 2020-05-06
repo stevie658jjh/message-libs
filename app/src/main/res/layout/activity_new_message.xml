@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/bgColor"
     android:orientation="vertical"
-    tools:context="com.color.sms.messages.theme.activity.NewMessageActivity">
+    tools:context="lib.message.theme.activity.NewMessageActivity">
 
     <RelativeLayout
         android:id="@+id/rlToolbar"

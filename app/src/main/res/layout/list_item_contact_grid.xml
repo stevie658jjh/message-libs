@@ -3,7 +3,7 @@
     <data>
         <variable
             name="contact"
-            type="com.color.sms.messages.theme.model.Contact" />
+            type="lib.message.theme.model.Contact" />
     </data>
     <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"

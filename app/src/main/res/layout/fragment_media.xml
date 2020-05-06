@@ -3,7 +3,7 @@
     <data>
         <variable
             name="fr"
-            type="com.color.sms.messages.theme.fragment.media.MediaFragment" />
+            type="lib.message.theme.fragment.media.MediaFragment" />
     </data>
     <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/margin_everything"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context="com.color.sms.messages.theme.fragment.media.MediaFragment">
+        tools:context="lib.message.theme.fragment.media.MediaFragment">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -130,7 +130,7 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/margin_everything">
 
-                <com.color.sms.messages.theme.custom.AnimatableCardView
+                <lib.message.theme.custom.AnimatableCardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_everything">
@@ -141,7 +141,7 @@
                         android:background="@drawable/bg_media_icon"
                         app:srcCompat="@drawable/vector_voice_white" />
 
-                </com.color.sms.messages.theme.custom.AnimatableCardView>
+                </lib.message.theme.custom.AnimatableCardView>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.color.sms.messages.theme.activity.PreviewMmsImageActivity">
+        tools:context="lib.message.theme.activity.PreviewMmsImageActivity">
 
         <LinearLayout
             android:id="@+id/lnToolbar"
@@ -62,7 +62,7 @@
 
         </LinearLayout>
 
-        <com.color.sms.messages.theme.custom.TouchImageView
+        <lib.message.theme.custom.TouchImageView
             android:id="@+id/img_preview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
