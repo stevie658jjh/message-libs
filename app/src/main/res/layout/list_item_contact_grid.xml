@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="contact"
+            type="com.color.sms.messages.theme.model.Contact" />
+    </data>
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_everything"
+        android:layout_marginEnd="@dimen/margin_everything"
+        android:layout_marginStart="@dimen/_2sdp"
+        app:cardElevation="@dimen/_2sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardBackgroundColor="?attr/cardColor"
+        android:padding="@dimen/margin_everything">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingBottom="@dimen/margin_everything"
+        android:paddingStart="@dimen/margin_to_parent"
+        android:paddingEnd="@dimen/margin_to_parent"
+        android:orientation="vertical"
+       >
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_8sdp">
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:id="@+id/contactBackground"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_ripple"
+                android:backgroundTint="@color/colorPrimary">
+
+                <TextView
+                    android:id="@+id/tvImage"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="@{contact.nameA}"
+                    android:textAllCaps="true"
+                    tools:text="A"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp"
+                    android:visibility="visible" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    app:civ_border_width="0dp" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgSelected"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_ripple"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_done_black_24dp"
+                android:tint="@color/white"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:maxLines="1"
+            android:text="@{contact.name}"
+            android:textColor="?attr/textTitleColor"
+            android:textSize="16sp"
+            tools:text="asd asd" />
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

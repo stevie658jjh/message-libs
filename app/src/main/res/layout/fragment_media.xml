@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="fr"
+            type="com.color.sms.messages.theme.fragment.media.MediaFragment" />
+    </data>
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/margin_everything"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        tools:context="com.color.sms.messages.theme.fragment.media.MediaFragment">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_everything"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_everything">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="45dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="@dimen/margin_everything"
+                    android:background="@drawable/bg_media_icon"
+                    android:padding="14dp"
+                    app:srcCompat="@drawable/vector_gif" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvGif"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:listitem="@layout/list_item_gif_category" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_everything"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_everything">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="45dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="@dimen/margin_everything"
+                    android:background="@drawable/bg_media_icon"
+                    android:padding="14dp"
+                    app:srcCompat="@drawable/vector_image_white" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:nestedScrollingEnabled="true"
+                    tools:listitem="@layout/list_item_image_category" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_everything"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_everything">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="45dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="@dimen/margin_everything"
+                    android:background="@drawable/bg_media_icon"
+                    app:srcCompat="@drawable/vector_location_white" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/mapOverplay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick="@{()-> fr.openPlacePicker()}" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnTurnOnLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_media"
+                        android:onClick="@{()->fr.grantLocationPermissions()}"
+                        android:text="@string/tap_to_give_access_to_location"
+                        android:textAllCaps="false" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_everything"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_everything">
+
+                <com.color.sms.messages.theme.custom.AnimatableCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_everything">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="45dp"
+                        android:layout_height="70dp"
+                        android:background="@drawable/bg_media_icon"
+                        app:srcCompat="@drawable/vector_voice_white" />
+
+                </com.color.sms.messages.theme.custom.AnimatableCardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnTurnOnMic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:visibility="gone"
+                        android:background="@drawable/bg_media"
+                        android:onClick="@{()->fr.grantMicPermissions()}"
+                        android:text="@string/tap_to_give_access_to_microphone"
+                        android:textAllCaps="false" />
+
+                    <LinearLayout
+                        android:id="@+id/btnRecord"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_media">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgRecord"
+                            android:layout_width="70dp"
+                            android:padding="@dimen/margin_everything"
+                            android:layout_height="match_parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/vector_microphone" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tvTimer"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"
+                            android:text="@string/touch_and_hold"
+                            android:textAllCaps="false"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgRecord" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_everything"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_everything">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="@dimen/margin_everything"
+                    android:background="@drawable/bg_media_icon"
+                    app:srcCompat="@drawable/vector_contact_white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bg_media"
+                    android:gravity="center"
+                    android:onClick="@{()->fr.onSelectContact()}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/margin_everything"
+                        android:drawableStart="@drawable/vector_contact_black"
+                        android:text="@string/share_contact"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_everything"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_everything">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="@dimen/margin_everything"
+                    android:background="@drawable/bg_media_icon"
+                    app:srcCompat="@drawable/vector_attach_file_white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bg_media"
+                    android:gravity="center"
+                    android:onClick="@{()->fr.onSelectAttachFile()}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/margin_everything"
+                        android:drawableStart="@drawable/vector_attach_file_black"
+                        android:text="@string/attach_file"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

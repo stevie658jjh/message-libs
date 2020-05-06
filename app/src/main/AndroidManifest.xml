@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.color.sms.messages.theme">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name=".utils.MyApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".theme.activity.PreviewThemeActivity"/>
+        <activity android:name=".theme.activity.SmsThemeActivity" />
+        <activity android:name=".block.activity.BlackListActivity" />
+        <activity android:name=".activity.search.SearchMessagesActivity" />
+        <activity android:name=".activity.PreviewMmsImageActivity" />
+        <activity android:name=".activity.GroupDetailsActivity" />
+        <activity android:name=".activity.GroupMessageActivity" />
+        <activity android:name=".activity.NewMessageActivity" />
+        <activity android:name="com.sucho.placepicker.PlacePickerActivity" />
+        <activity android:name=".activity.ListGifActivity" />
+        <activity
+            android:name=".activity.ComposeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+                <data android:scheme="sms_body" />
+            </intent-filter>
+        </activity> <!-- BroadcastReceiver that listens for incoming SMS messages -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_api_key" />
+
+        <receiver
+            android:name="receiver.SmsReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+            </intent-filter>
+        </receiver> <!-- Service that delivers messages from the phone "quick response" -->
+        <receiver
+            android:name="receiver.MmsReceiver"
+            android:permission="android.permission.BROADCAST_WAP_PUSH">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.klinker.android.send_message.SentReceiver"
+            android:taskAffinity="${applicationId}.SMS_SENT" />
+        <receiver
+            android:name="com.klinker.android.send_message.MmsSentReceiver"
+            android:taskAffinity="com.klinker.android.messaging.MMS_SENT" />
+        <receiver
+            android:name="com.klinker.android.send_message.MmsReceivedReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.klinker.android.messaging.MMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="receiver.MmsReceivedReceiver"
+            android:taskAffinity="com.klinker.android.messaging.MMS_RECEIVED" />
+        <receiver android:name="block.services.CallBlockerBroadcast">
+            <intent-filter android:priority="999999999">
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="block.services.SMSBlockerBroadcast"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="999999999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="block.services.AutoStartBroadcast">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="service.HeadlessSmsSendService"
+            android:exported="true"
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="block.services.CallListenerService"
+            android:enabled="true" />
+        <service android:name="com.android.mms.transaction.TransactionService" />
+
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/id_admob"/>
+    </application>
+
+</manifest>

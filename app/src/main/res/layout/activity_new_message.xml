@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/bgColor"
+    android:orientation="vertical"
+    tools:context="com.color.sms.messages.theme.activity.NewMessageActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_title_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_toRightOf="@id/btn_back"
+            android:text="New conversation"
+            android:textColor="?attr/textTitleColor"
+            android:textSize="19sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/btn_add_group"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:visibility="gone"
+            android:background="@drawable/circle"
+            android:src="@drawable/ic_navigate_next_black_24dp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_main_contact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlToolbar"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_shadow_bottom"
+            android:elevation="@dimen/_5sdp"
+            android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:layout_weight="1"
+            android:text="To"
+            android:textColor="?attr/textTitleColor"
+            android:textSize="@dimen/_12sdp" />
+
+        <mabbas007.tagsedittext.TagsEditText
+            android:id="@+id/tv_search"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="wrap_content"
+            app:allowSpaceInTag="true"
+            android:maxLines="1"
+            android:hint="@string/enter_name_or_phone_number"
+            android:textSize="@dimen/_12sdp"
+            android:background="@android:color/transparent"
+            app:tagsBackground="@drawable/border_rectangle_tag_contact"
+            app:tagsTextColor="?attr/textTitleColor"
+            app:tagsTextSize="@dimen/_13sdp" />
+
+        <ImageView
+            android:id="@+id/btn_keyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:src="@drawable/ic_keyboard_number" />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ln_new_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="#fec771"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_person_black_24dp"
+                android:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_new_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="Send to"
+                android:textColor="?attr/textTitleColor"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_group_conversation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/ic_group_add_black_24dp"
+                android:tint="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="Start group conversation"
+                android:textColor="?attr/textTitleColor"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_contacts"
+            tools:listitem="@layout/list_item_contact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlToolbar"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_5sdp"
+            android:background="@drawable/bg_shadow_bottom" />
+
+        <HorizontalScrollView
+            android:layout_width="@dimen/_165sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/ln_img_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_input"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:hint="Group name (optional)"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User ID" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:text="Only you can see this group name"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressLoading"
+        android:layout_width="@dimen/_20sdp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_gravity="bottom" />
+
+</RelativeLayout>

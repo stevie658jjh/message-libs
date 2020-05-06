@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+        <variable
+            name="category"
+            type="com.color.sms.messages.theme.activity.search.model.Search.Category" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/margin_everything"
+        android:layout_marginEnd="@dimen/margin_everything"
+        app:cardElevation="@dimen/_2sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardBackgroundColor="?attr/cardColor"
+        android:padding="@dimen/margin_everything">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_everything">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="@dimen/margin_small"
+            tools:src="@drawable/ic_map_marker" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@{category.name.toString()}"
+            android:textColor="?attr/textTitleColor"
+            tools:text="@string/app_name" />
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

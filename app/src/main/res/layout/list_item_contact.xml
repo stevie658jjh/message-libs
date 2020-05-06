@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:id="@+id/contactBackground"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_ripple"
+                android:backgroundTint="@color/colorPrimary" >
+
+                <TextView
+                    android:id="@+id/tvImage"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="A"
+                    android:textAllCaps="true"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp"
+                    android:visibility="visible" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="50dp"
+                    app:civ_border_width="0dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imgSelected"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_ripple"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_done_black_24dp"
+                android:tint="@color/white"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:text="asd asd"
+                android:textColor="?attr/textTitleColor"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:text="1212323"
+                android:textColor="?attr/textSecondColor"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="45dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:text="Mobile"
+            android:textColor="?attr/textTitleColor"
+            android:textSize="@dimen/_11sdp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

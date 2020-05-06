@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp">
+
+        <com.color.sms.messages.theme.tools.linkPreview.RichLinkViewTelegram
+            android:id="@+id/linkPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ProgressBar
+            android:id="@+id/progressLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewError"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/margin_everything"
+            android:background="@drawable/bg_failed"
+            android:gravity="center"
+            android:minHeight="80dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Load link failed !!"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="11sp"
+                tools:ignore="SmallSp"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Load link failed !!"
+                android:textColor="@android:color/holo_red_dark"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
