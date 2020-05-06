@@ -1,17 +1,6 @@
 <resources>
     <string name="map_api_key">AIzaSyCPSFbJxqdAISD6XP0QwbVCsYEE6W6GLLc</string>
 
-
-    <string name="id_admob">ca-app-pub-2808214978106183~5986950977</string>
-    <string name="admob_native_1">ca-app-pub-2808214978106183/5770300883</string>
-    <string name="admob_interstitial_1">ca-app-pub-2808214978106183/3144137541</string>
-    <string name="admob_interstitial_2">ca-app-pub-2808214978106183/8230805084</string>
-    <string name="admob_banner">ca-app-pub-2808214978106183/5340917860</string>
-
-    <string name="admob_native_test">ca-app-pub-3940256099942544/2247696110</string>
-    <string name="admob_interstitial_test">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="admob_banner_test">ca-app-pub-3940256099942544/6300978111</string>
-
     <string name="app_name">Theme Messenger</string>
     <string name="archived">Archived</string>
     <string name="blocked_contacts">Blocked contacts</string>

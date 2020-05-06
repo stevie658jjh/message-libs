@@ -154,10 +154,5 @@
             android:enabled="true" />
         <service android:name="com.android.mms.transaction.TransactionService" />
 
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/id_admob"/>
     </application>
-
 </manifest>
