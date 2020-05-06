@@ -9,8 +9,7 @@ ext {
     bintrayName = "com.github.stevie658jjh"
     libraryName = 'message-libs'
 
-    publishedGroupId = 'stevie658jjh'
-    artifact = 'message-libs'
+    artifact = 'app'
     libraryVersion = '1.3.0'
 
     libraryDescription = 'Free PlacePicker for Android using Google Maps'
@@ -18,10 +17,6 @@ ext {
     gitUrl = 'https://github.com/stevie658jjh/message-libs.git'
     developerId = 'stevie658jjh'
     developerName = 'stevie658jjh'
-    developerEmail = 'stevie658jjh@gmail.com'
-    licenseName = 'The 2-Clause BSD License'
-    licenseUrl = 'https://opensource.org/licenses/BSD-2-Clause'
-    allLicenses = ["BSD 2-Clause"]
 }
 
 android {
