@@ -42,8 +42,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".theme.activity.PreviewThemeActivity"/>
-        <activity android:name=".theme.activity.SmsThemeActivity" />
         <activity android:name=".block.activity.BlackListActivity" />
         <activity android:name=".activity.search.SearchMessagesActivity" />
         <activity android:name=".activity.PreviewMmsImageActivity" />
@@ -57,11 +55,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />

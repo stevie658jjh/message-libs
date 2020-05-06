@@ -1,20 +1,18 @@
 package com.color.sms.messages.theme;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
@@ -22,15 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.color.sms.messages.theme.activity.ComposeActivity;
-import com.color.sms.messages.theme.activity.GroupMessageActivity;
 import com.color.sms.messages.theme.activity.NewMessageActivity;
-import com.color.sms.messages.theme.activity.search.SearchMessagesActivity;
 import com.color.sms.messages.theme.adapter.ConversationAdapter;
-import com.color.sms.messages.theme.base.BaseActivity;
-import com.color.sms.messages.theme.block.activity.BlackListActivity;
 import com.color.sms.messages.theme.block.utilBlock.BlockListController;
 import com.color.sms.messages.theme.databinding.ActivityMainBinding;
-import com.color.sms.messages.theme.model.Contact;
 import com.color.sms.messages.theme.model.Conversation;
 import com.color.sms.messages.theme.utils.Constants;
 import com.color.sms.messages.theme.utils.ContactListController;
@@ -41,21 +34,23 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>,
+public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,
         ConversationAdapter.ConversationListener {
 
     private static final int REQUEST_GET_CONTACT = 162;
-    private static final int REQUEST_BLOCK_CHANGE = 126;
     private ActivityMainBinding binding;
     private ConversationAdapter mAdapter;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_main, container);
+        binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_main, container, false);
+        return v;
+    }
 
-        setUpToolbar();
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         initView();
         setUpRecyclerView();
     }
@@ -66,7 +61,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     private void initView() {
         binding.swipeRefresh.setOnRefreshListener(this::initLoader);
-        binding.fabNewMessage.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, NewMessageActivity.class), REQUEST_GET_CONTACT));
+        binding.fabNewMessage.setOnClickListener(v -> startActivityForResult(new Intent(requireContext(), NewMessageActivity.class), REQUEST_GET_CONTACT));
         binding.recyclerConversation.addOnScrollListener(getScrollListener());
     }
 
@@ -83,109 +78,13 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
     }
 
     private void setUpRecyclerView() {
-        int backgroundTheme = SharedPreferenceHelper.getInstance(this).getInt(Constants.BACKGROUND_THEME_MAIN);
+        int backgroundTheme = SharedPreferenceHelper.getInstance(requireContext()).getInt(Constants.BACKGROUND_THEME_MAIN);
         if (backgroundTheme != 0) {
             binding.backgroundMain.setBackgroundResource(backgroundTheme);
             binding.backgroundTransparent.setVisibility(View.VISIBLE);
         }
-        mAdapter = new ConversationAdapter(this, this);
+        mAdapter = new ConversationAdapter(requireContext(), this);
         binding.recyclerConversation.setAdapter(mAdapter);
-    }
-
-    private void setUpToolbar() {
-
-//        binding.toolbar.setTitle("Messages");
-//        setSupportActionBar(binding.toolbar);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constants.REQUEST_NONE && resultCode == Constants.RESULT_CHANGE) {
-//            finish();
-//            startActivity(getIntent());
-        }
-
-        if (requestCode == REQUEST_PERMISSION_SMS) {
-            if (resultCode == Activity.RESULT_OK) {
-                initLoader();
-                ContactListController.getInstance().init();
-            }
-        }
-
-        if (requestCode == REQUEST_BLOCK_CHANGE && resultCode == Activity.RESULT_OK) {
-            mAdapter.updateBlackList();
-        }
-
-        if (requestCode == REQUEST_GET_CONTACT) {
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                Contact contact = data.getParcelableExtra(Constants.PUT_OBJ);
-                Intent intent = new Intent(this, ComposeActivity.class);
-                intent.putExtra("phone", contact.getPhone());
-                intent.putExtra("color", contact.getColor());
-                intent.putExtra("type", Constants.TYPE_NEW_MESSAGE);
-                startActivityForResult(intent, Constants.REQUEST_NONE);
-            }
-        }
-    }
-
-    protected boolean isDefaultSmsApp() {
-        return getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(this));
-    }
-
-    protected void showDefaultSmsDialog() {
-        Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-        if (!Telephony.Sms.getDefaultSmsPackage(this).equals(getPackageName())) {
-            intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
-        }
-        this.startActivityForResult(intent, REQUEST_PERMISSION_SMS);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            menu.getItem(4).setVisible(false);
-            menu.getItem(5).setVisible(true);
-        } else {
-            menu.getItem(5).setVisible(false);
-            menu.getItem(4).setVisible(true);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.block:
-                startActivityForResult(new Intent(this, BlackListActivity.class), REQUEST_BLOCK_CHANGE);
-                break;
-            case R.id.dark_mode:
-            case R.id.light_mode:
-                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                finish();
-                startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
-                break;
-
-            case R.id.help:
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setData(Uri.parse("mailto:themecolor.technology@gmail.com"));
-                startActivity(Intent.createChooser(emailIntent, "Send feedback"));
-                break;
-            case R.id.group_message:
-                startActivity(new Intent(this, GroupMessageActivity.class));
-                break;
-            case R.id.search:
-                startActivity(new Intent(this, SearchMessagesActivity.class));
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @NonNull
@@ -199,7 +98,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
         Uri baseUri = Uri.parse("content://mms-sms/conversations?simple=true");
 
         String[] reqCols = new String[]{"*"};
-        return new CursorLoader(getApplicationContext(), baseUri, reqCols, null, null, "date DESC");
+        return new CursorLoader(requireContext(), baseUri, reqCols, null, null, "date DESC");
     }
 
     @Override
@@ -217,7 +116,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
                     cursor.moveToFirst();
                     while (cursor.moveToNext()) {
                         int msg_count = cursor.getInt(cursor.getColumnIndex(reqCols[2]));
-                        String address = MessageUtils.getContact(this, cursor.getString(cursor.getColumnIndex(reqCols[1])));
+                        String address = MessageUtils.getContact(requireContext(), cursor.getString(cursor.getColumnIndex(reqCols[1])));
 
                         if (msg_count > 0 && !(address == null || address.equalsIgnoreCase(""))) {
                             Conversation conversation = new Conversation();
@@ -228,7 +127,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
                             conversation.setSnippet(cursor.getString(cursor.getColumnIndex(reqCols[3])));
                             conversation.setDate(cursor.getLong(cursor.getColumnIndex(reqCols[4])));
                             conversation.setRead(cursor.getInt(cursor.getColumnIndex(reqCols[5])));
-                            conversation.setAddress(MessageUtils.getContact(this, cursor.getString(cursor.getColumnIndex(reqCols[1]))));
+                            conversation.setAddress(MessageUtils.getContact(requireContext(), cursor.getString(cursor.getColumnIndex(reqCols[1]))));
                             mConversations.add(conversation);
                         }
                     }
@@ -249,16 +148,11 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
         }
     }
 
-
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isDefaultSmsApp()) {
-            showDefaultSmsDialog();
-        } else {
-            ContactListController.getInstance().init();
-            initLoader();
-        }
+    public void onStart() {
+        super.onStart();
+        ContactListController.getInstance().init();
+        initLoader();
     }
 
     @Override
@@ -268,9 +162,9 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
     @Override
     public void onConversationClicked(Conversation conversation) {
         if (conversation.getRead() == 0) {
-            MessageUtils.markMessageRead(this, conversation.getAddress());
+            MessageUtils.markMessageRead(requireContext(), conversation.getAddress());
         }
-        Intent intent = new Intent(this, ComposeActivity.class);
+        Intent intent = new Intent(requireContext(), ComposeActivity.class);
         intent.putExtra("id", conversation.getId());
         intent.putExtra("phone", conversation.getAddress());
         intent.putExtra("color", conversation.getColor());
