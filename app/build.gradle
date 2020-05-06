@@ -1,13 +1,10 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.color.sms.messages.theme"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 2
@@ -30,10 +27,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation files('libs/commons-io-2.6.jar')
-    implementation project(':library')
-    implementation project(':placepicker')
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

@@ -1,1 +1,1 @@
-include ':app', 'library', 'placepicker'
+include ':real', 'library', 'placepicker', ':app'
