@@ -28,7 +28,6 @@ import com.color.sms.messages.theme.model.Conversation;
 import com.color.sms.messages.theme.utils.Constants;
 import com.color.sms.messages.theme.utils.ContactListController;
 import com.color.sms.messages.theme.utils.MessageUtils;
-import com.color.sms.messages.theme.utils.SharedPreferenceHelper;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -78,11 +77,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     private void setUpRecyclerView() {
-        int backgroundTheme = SharedPreferenceHelper.getInstance(requireContext()).getInt(Constants.BACKGROUND_THEME_MAIN);
-        if (backgroundTheme != 0) {
-            binding.backgroundMain.setBackgroundResource(backgroundTheme);
-            binding.backgroundTransparent.setVisibility(View.VISIBLE);
-        }
         mAdapter = new ConversationAdapter(requireContext(), this);
         binding.recyclerConversation.setAdapter(mAdapter);
     }

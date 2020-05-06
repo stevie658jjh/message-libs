@@ -3,11 +3,11 @@ package com.color.sms.messages.theme.utils;
 import android.net.Uri;
 import android.provider.Telephony.Threads;
 
+import com.color.sms.messages.theme.model.Contact;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.color.sms.messages.theme.model.Contact;
 
 public final class Constants {
     public static final int MESSAGE_TYPE_ALL = 0;
@@ -53,7 +53,4 @@ public final class Constants {
     public static void sortList() {
         Collections.sort(contactList, (o1, o2) -> o1.getNameA().compareTo(o2.getNameA()));
     }
-
-    public static final String BACKGROUND_THEME_MAIN = "BACKGROUND_THEME_MAIN";
-    public static final String BACKGROUND_THEME_COMPOSE = "BACKGROUND_THEME_COMPOSE";
 }

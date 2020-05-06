@@ -58,7 +58,6 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabNewMessage"
             android:layout_width="wrap_content"
@@ -66,10 +65,10 @@
             android:layout_margin="16dp"
             android:backgroundTint="@color/colorPrimary"
             android:focusable="true"
+            android:src="@drawable/wrap_write"
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_compose_solid_24" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ProgressBar
             android:id="@+id/progressLoading"

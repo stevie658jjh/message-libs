@@ -36,13 +36,11 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private BlockListController blockListController;
     private ConversationListener listener;
     private Glide4Engine glide4Engine = new Glide4Engine();
-    private int backgroundTheme;
 
     public ConversationAdapter(Context context, ConversationListener listener) {
         this.listener = listener;
         mContext = context;
 
-        backgroundTheme = SharedPreferenceHelper.getInstance(mContext).getInt(Constants.BACKGROUND_THEME_MAIN);
     }
 
     public void setData(List<Conversation> conversations) {
@@ -124,11 +122,6 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolderParent, int position) {
         final Conversation conversation = mConversations.get(position);
         ViewHolder viewHolder = (ViewHolder) viewHolderParent;
-        if (backgroundTheme != 0) {
-            viewHolder.mTextViewTitle.setTextColor(mContext.getResources().getColor(R.color.color_white));
-            viewHolder.mTextViewSnippet.setTextColor(mContext.getResources().getColor(R.color.color_white));
-            viewHolder.mTextViewDate.setTextColor(mContext.getResources().getColor(R.color.color_white));
-        }
 
         viewHolder.mTextViewTitle.setText(MessageUtils.getContactbyPhoneNumber(mContext, conversation.getAddress()));
         if (conversation.getSnippet() == null || conversation.getSnippet().equalsIgnoreCase("")) {

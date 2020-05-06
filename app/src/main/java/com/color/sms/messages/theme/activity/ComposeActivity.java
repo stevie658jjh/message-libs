@@ -387,21 +387,6 @@ public class ComposeActivity extends BaseActivity implements MediaFragment.Media
         messageAdapter = new MessageAdapter(this, color);
         recyclerView.setAdapter(messageAdapter);
         recyclerView.setHasFixedSize(true);
-        changeColor();
-    }
-
-    private void changeColor() {
-        int backgroundCompose = SharedPreferenceHelper.getInstance(this).getInt(Constants.BACKGROUND_THEME_COMPOSE);
-        if (backgroundCompose != 0) {
-            backgroundMain.setBackgroundResource(backgroundCompose);
-            backgroundTransparent.setVisibility(View.VISIBLE);
-            mTvBody.setHintTextColor(getResources().getColor(R.color.textGrey));
-            mTvBody.setTextColor(getResources().getColor(R.color.white));
-            borderBody.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
-        }
-        btnAddMedia.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_OVER);
-        mImgSend.setImageTintList(ColorStateList.valueOf(color));
-        findViewById(R.id.btnCamera).getBackground().setColorFilter(color, PorterDuff.Mode.SRC_OVER);
     }
 
     private void setUpRecyclerView() {

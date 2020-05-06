@@ -43,7 +43,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private MediaPlayer mediaPlayer, mediaPlayerVideo;
     private Glide4Engine glide4Engine;
     private int userColor;
-    private int backgroundTheme;
 
     public MessageAdapter(Context context, int color) {
         this.userColor = color;
@@ -109,7 +108,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         Message message = mMessages.get(position);
-        backgroundTheme = SharedPreferenceHelper.getInstance(mContext).getInt(Constants.BACKGROUND_THEME_MAIN);
         if (getItemViewType(position) == TYPE_MESSAGE_IN) {
             MessageInHolder v = ((MessageInHolder) viewHolder);
             v.setMessageIn(message);
@@ -184,11 +182,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         private void setMessageIn(Message message) {
-            if (backgroundTheme != 0) {
-                item.tvBody.setTextColor(mContext.getResources().getColor(R.color.color_black));
-                item.tvBody.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_white)));
-                item.tvTimestamp.setTextColor(mContext.getResources().getColor(R.color.white));
-            }
             item.tvBody.setText(message.getBody());
 
             if (message.isGif()) {
@@ -387,12 +380,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         private void setMessageOut(Message message) {
-            if (backgroundTheme != 0) {
-                itemView.tvBody.setTextColor(mContext.getResources().getColor(R.color.white));
-                itemView.tvTimestamp.setTextColor(mContext.getResources().getColor(R.color.white));
-                itemView.tvStatus.setTextColor(mContext.getResources().getColor(R.color.white));
-            }
-
             if (message.isGif()) {
                 glide4Engine.loadGifImage(itemView.imageMms, message.getImage());
             } else if (message.getBitmap() != null) {
