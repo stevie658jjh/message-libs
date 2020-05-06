@@ -6,11 +6,11 @@ apply plugin: 'com.jfrog.bintray'
 
 ext {
     bintrayRepo = "Android"
-    bintrayName = "com.github.stevie658jjh"
-    libraryName = 'message-libs'
+    bintrayName = "com.github"
+    libraryName = 'stevie658jjh'
 
-    artifact = 'app'
-    libraryVersion = '1.3.1'
+    artifact = 'message-libs'
+    libraryVersion = '1.3.2'
 
     libraryDescription = 'Free PlacePicker for Android using Google Maps'
     siteUrl = 'https://github.com/stevie658jjh/message-libs'
