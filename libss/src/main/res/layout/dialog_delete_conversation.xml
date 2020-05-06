@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:textStyle="bold"
+                    android:layout_margin="@dimen/margin_everything"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_everything"
+                    android:text="@string/are_you_sure_you_want_to_delete_this_conversation"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_margin="@dimen/margin_to_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnCancel"
+                        android:layout_width="100dp"
+                        android:text="@string/cancel"
+                        android:layout_marginEnd="@dimen/margin_everything"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_button"
+                        android:textColor="@color/white_primary" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnOk"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_button"
+                        android:text="@string/delete"
+                        android:textColor="@color/white_primary" />
+                </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/progressLoading"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="gone"
+            android:background="@drawable/bg_card"
+            android:gravity="center">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
+
