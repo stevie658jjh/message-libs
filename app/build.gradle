@@ -1,23 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-ext {
-    bintrayRepo = "Android"
-    bintrayName = "com.github"
-    libraryName = 'stevie658jjh'
-
-    artifact = 'message-libs'
-    libraryVersion = '1.3.2'
-
-    libraryDescription = 'Free PlacePicker for Android using Google Maps'
-    siteUrl = 'https://github.com/stevie658jjh/message-libs'
-    gitUrl = 'https://github.com/stevie658jjh/message-libs.git'
-    developerId = 'stevie658jjh'
-    developerName = 'stevie658jjh'
-}
 
 android {
     compileSdkVersion 29
