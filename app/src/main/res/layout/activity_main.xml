@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?bgColor"
+        android:tag="@string/app_name"
         tools:context="lib.message.theme.lib.message.theme.MainActivity">
 
 
