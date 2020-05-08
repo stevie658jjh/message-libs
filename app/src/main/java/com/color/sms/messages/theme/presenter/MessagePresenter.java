@@ -14,9 +14,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.color.sms.messages.theme.model.MediaAddingModel;
+import com.color.sms.messages.theme.utils.FileController;
 import com.klinker.android.send_message.ApnUtils;
 import com.klinker.android.send_message.Message;
 import com.klinker.android.send_message.Transaction;
+import com.klinker.android.send_message.Transaction2;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -25,12 +28,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.color.sms.messages.theme.model.MediaAddingModel;
-import com.color.sms.messages.theme.utils.FileController;
-
 public class MessagePresenter {
     private MMSSettings settings;
-    private Transaction transaction;
+    private Transaction2 transaction;
     private Context context;
 
     public MessagePresenter(final Context context) {
@@ -48,7 +48,7 @@ public class MessagePresenter {
         sendSettings.setProxy(settings.getMmsProxy());
         sendSettings.setPort(settings.getMmsPort());
         sendSettings.setUseSystemSending(true);
-        transaction = new Transaction(context, sendSettings);
+        transaction = new Transaction2(context, sendSettings);
     }
 
     public void sendMessage(final String string, final String phoneNumber, long threadId) {
